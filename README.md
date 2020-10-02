@@ -1,4 +1,11 @@
-# COVID-19 Case Severity Analysis
+# COVID-19 Case Severity Analysis   
+   
+### Introduction    
+We are going to be analyzing how different factors affect the severity of COVID-19 in an infected patient. We will be looking primarily at pre-existing diseases, as this is theorized to increase the chance of serious illness or even death from coronavirus. In addition, we will also take into account how demographic factors like age, race, sex, and financial status affect the severity. We know that having a pre-existing disease will increase the chance of medical problems related to coronavirus, but we do not know how much each disease affects the severity. We hope this intersection of pre-existing diseases and demographics with severity of illness in COVID-19 patients will lead to insightful information about the virus.    
+
+
+
+
 
 ### **Results**
 
