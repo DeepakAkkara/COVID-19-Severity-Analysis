@@ -1,7 +1,6 @@
 # COVID-19 Case Severity Analysis
 
 
-=======
 ## Methods
 
 ### Unsupervised Learning
