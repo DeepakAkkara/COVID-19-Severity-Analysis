@@ -1,5 +1,13 @@
-# COVID-19 Case Severity Analysis
-
+# COVID-19 Case Severity Analysis   
+   
+## Introduction    
+We are going to be analyzing how different factors affect the severity of COVID-19 in an infected patient.
+We will be looking primarily at pre-existing diseases, as this is theorized to increase the chance of
+serious illness or even death from coronavirus. In addition, we will also take into account how
+demographic factors like age, race, sex, and financial status affect the severity.
+We know that having a pre-existing disease will increase the chance of medical problems related to coronavirus,
+but we do not know how much each disease affects the severity. We hope this intersection of
+pre-existing diseases and demographics with severity of illness in COVID-19 patients will lead to insightful information about the virus.    
 
 ## Methods
 
@@ -50,7 +58,11 @@ By using regression, we could be able to return some percentage chance of develo
 based on the combination of COVID-19 with other risk factors (our inputs).
 
 ## **Results**
-Our ideal results will show a clear relation between severity and various demographic backgrounds. The principal component analysis will ideally identify the comorbidities that lead to the highest severity. For example, we may find that COVID-19 in conjunction with heart disease may be more likely to result in a severe case in comparison to COVID-19 in conjunction with diabetes. For the supervised portion of the project, we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
+Our ideal results will show a clear relation between severity and various demographic backgrounds.
+The principal component analysis will ideally identify the comorbidities that lead to the highest severity. 
+For example, we may find that COVID-19 in conjunction with heart disease may be more likely to result
+in a severe case in comparison to COVID-19 in conjunction with diabetes. For the supervised portion of the project,
+we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
 
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
