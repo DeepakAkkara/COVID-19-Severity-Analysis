@@ -1,6 +1,6 @@
-# COVID-19 Case Severity Analysis   
+# **COVID-19 Case Severity Analysis**
    
-## Introduction    
+## **Introduction**
 We are going to be analyzing how different factors affect the severity of COVID-19 in an infected patient.
 We will be looking primarily at pre-existing diseases, as this is theorized to increase the chance of
 serious illness or even death from coronavirus. In addition, we will also take into account how
@@ -9,7 +9,19 @@ We know that having a pre-existing disease will increase the chance of medical p
 but we do not know how much each disease affects the severity. We hope this intersection of
 pre-existing diseases and demographics with severity of illness in COVID-19 patients will lead to insightful information about the virus.    
 
-## Methods
+
+## **Background**
+Hospitals have been overcrowded with COVID patients since the pandemic started.
+COVID is a deadly virus that has killed over 1 million worldwide and 208,000 people in the United States,
+and these numbers will continue to increase.
+Too many people are dying, so we need to minimize these deaths as much as possible by prioritizing beds for the most vulnerable.  
+Our goal is to produce an algorithm that can assign patients a severity level based on factors such as age, sex, race, and pre-existing conditions.
+This will help guide the hospitals in determining who to prioritize when there is a shortage of beds.
+During the semester, we hope to be able to determine which conditions will leave somebody the
+most vulnerable to severe complications or even death, and we hope hospitals can use this information to assign beds to those people,
+and in the long run, save lives.
+
+## **Methods**
 
 ### Unsupervised Learning
 In any machine learning task, the [Curse of Dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality) is
@@ -73,3 +85,5 @@ Moreover, risk prediction and a strong understanding of what factors contribute 
 An individual may engage in more extensive prevention behaviors if they are able to predict the severity of their illness or the illnesses of their loved ones.
 Additionally, as a society, we can identify those individuals who are most at risk, and take extra precautions to protect them from the virus.
 We hope that this increase in information will drive progress toward ending the pandemic.
+
+## **References**
