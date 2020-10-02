@@ -2,7 +2,9 @@
 <p align="center">
     <img src="../cs4641_team48/assets/Design%20Process.png" width=50%/>
 </p>
+
 ![uhh](../cs4641_team48/assets/Design%20Process.png)
+
 ## **Introduction**
 We are going to be analyzing how different factors affect the severity of COVID-19 in an infected patient.
 We will be looking primarily at pre-existing diseases, as this is theorized to increase the chance of
