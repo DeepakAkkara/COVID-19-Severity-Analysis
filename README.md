@@ -1,7 +1,7 @@
 # COVID-19 Case Severity Analysis
 
 ### **Results**
-
+Our ideal results will show a clear relation between severity and various demographic backgrounds. The principal component analysis will ideally identify the comorbidities that lead to the highest severity. For example, we may find that COVID-19 in conjunction with heart disease may be more likely to result in a severe case in comparison to COVID-19 in conjunction with diabetes. For the supervised portion of the project, we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
 
 ### **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight into how the COVID-19 pandemic should best be handled. At the institutional level, hospitals can use our risk predictions to determine how to most efficiently allocate the limited resources in order to minimize deaths and complications. Hospitals will be able to make well-informed, data-driven decisions for how to treat patients and what to be the most wary of. Moreover, risk prediction and a strong understanding of what factors contribute the most to COVID-19 severity can also be informative for the individual. An individual may engage in more extensive prevention behaviors if they are able to predict the severity of their illness or the illnesses of their loved ones. Additionally, as a society, we can identify those individuals who are most at risk, and take extra precautions to protect them from the virus. We hope that this increase in information will drive progress toward ending the pandemic.
