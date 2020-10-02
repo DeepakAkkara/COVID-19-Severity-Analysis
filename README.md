@@ -49,7 +49,7 @@ output and the input features (different attributes of patients).
 By using regression, we could be able to return some percentage chance of developing a serious illness
 based on the combination of COVID-19 with other risk factors (our inputs).
 
-### **Results**
+## **Results**
 Our ideal results will show a clear relation between severity and various demographic backgrounds. The principal component analysis will ideally identify the comorbidities that lead to the highest severity. For example, we may find that COVID-19 in conjunction with heart disease may be more likely to result in a severe case in comparison to COVID-19 in conjunction with diabetes. For the supervised portion of the project, we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
 
 ## **Discussion**
