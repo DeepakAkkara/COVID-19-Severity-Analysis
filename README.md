@@ -1,5 +1,6 @@
 # COVID-19 Case Severity Analysis
 
+
 ## Methods
 
 ### Unsupervised Learning
@@ -48,7 +49,10 @@ output and the input features (different attributes of patients).
 By using regression, we could be able to return some percentage chance of developing a serious illness
 based on the combination of COVID-19 with other risk factors (our inputs).
 
-### **Discussion**
+## **Results**
+Our ideal results will show a clear relation between severity and various demographic backgrounds. The principal component analysis will ideally identify the comorbidities that lead to the highest severity. For example, we may find that COVID-19 in conjunction with heart disease may be more likely to result in a severe case in comparison to COVID-19 in conjunction with diabetes. For the supervised portion of the project, we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
+
+## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
 into how the COVID-19 pandemic should best be handled. At the institutional level, hospitals can use our risk predictions
 to determine how to most efficiently allocate the limited resources in order to minimize deaths and complications.
