@@ -84,7 +84,21 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
 
 <p align="center">
     <img src="assets/pairplot clean.png" width=50%/>
-    PairPlots
+    <br>
+    Pair Plots showing correlations and relationships between all numerical features and delimited by death/ICU.
+    (click for more)
+</p>
+
+<p align="center">
+    <img src="assets/pairplot detail.png"/>
+    <br>
+    Pair Plot detail
+</p>
+
+<p align="center">
+    <img src="assets/numcorr.png" width=50%/>
+    <br>
+    Correlation for numerical data
 </p>
 
 ## **Discussion**
