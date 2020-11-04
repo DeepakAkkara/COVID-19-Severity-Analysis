@@ -90,7 +90,7 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
 </p>
 
 <p align="center">
-    <img src="assets/pairplot detail.png"/>
+    <img src="assets/pairplot detail.png" width=50%/>
     <br>
     Pair Plot detail
 </p>
