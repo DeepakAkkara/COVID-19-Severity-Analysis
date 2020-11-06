@@ -35,6 +35,12 @@ As a result of this, it becomes necessary to reduce the dimension into a context
 By reducing the amount of dimensions/features we have to process, we are able to analyze fewer relationships between
 features and reduce the computational power needed and the likelihood of overfitting.
 
+#### [Pair Plots](https://seaborn.pydata.org/generated/seaborn.pairplot.html)
+Pair plots are a useful unsupervised visualization for determining pairwise relationships among features in a dataset. We decided to create pairplots for all numerical columns in the dataset, since continuous values can be plotted much more easily on a pairplot than one-hot encoded categorical features.
+
+#### [Correlation Matrix](https://en.wikipedia.org/wiki/Correlation_and_dependence#Correlation_matrices)
+One of the most important unsupervised techniques we used was creating a correlation matrix of all of our numerical data. This allows us to see which features are most strongly correlated with one another, helping us eliminate redundancy in the future as well as find the columns most strongly correlated with ending up in the ICU or dying.
+
 #### [Principal Component Analysis](https://en.wikipedia.org/wiki/Principal_component_analysis)
 An important algorithm in dimensionality reduction is principal component analysis (PCA),
 which is an unsupervised technique.
@@ -43,10 +49,20 @@ bases correspond to the most important components of the data (hence the name pr
 Essentially, the goal of PCA is to reduce the amount of dimensions as much as possible
 while keeping as much information as possible.
 
+#### [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)
+t-distributed stochastic neighbor embedding is another dimensionality reduction technique, typically used to provide easy 2D or 3D
+visualizations of high dimensional data, which is extremely useful for interpreting results visually. It works by constructing a similarity probability distribution for each pair of points using Euclidean distance, then mapping each point into a smaller feature space that best represents the similarity distribution.
+
+#### [K-Means Clustering](https://en.wikipedia.org/wiki/K-means_clustering)
+We used the k-means clustering algorithm on our data after projecting into a 2D space for visualizations using t-SNE. Since we know our non-target features come from two latent classes (those who ended up in the ICU and those who didn’t), we decided to use 2 clusters and visualize the k-means clusters in the dimensionality reduced data.
+
 ### Supervised Learning:
 The point of any machine learning task is to get some actionable results out of the data that we put in,
 and supervised learning will help us achieve that goal.
-The main methods being considered are decision trees and regression.
+The main methods being considered are chi-squared feature selection, decision trees, regression.
+
+#### [Chi-Squared Feature Selection]
+After conducting unsupervised analysis on the numerical data, we wanted to perform analysis on the qualitative data and determined that the chi-squared test for feature selection would be helpful in figuring out which variables are dependent with whether or not a patient lives or dies. We ran sklearn.feature_selection.chi2 on the data with the “died” feature as the target parameter and plotted the results with the highest chi-squared statistics.
 
 #### [Decision Trees](https://en.wikipedia.org/wiki/Decision_tree)
 <p align="center">
