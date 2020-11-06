@@ -55,13 +55,14 @@ visualizations of high dimensional data, which is extremely useful for interpret
 
 #### [K-Means Clustering](https://en.wikipedia.org/wiki/K-means_clustering)
 We used the k-means clustering algorithm on our data after projecting into a 2D space for visualizations using t-SNE. Since we know our non-target features come from two latent classes (those who ended up in the ICU and those who didn’t), we decided to use 2 clusters and visualize the k-means clusters in the dimensionality reduced data.
+As expected, the t-SNE reduced data appears to be in two somewhat distinct clusters. Unfortunately, 
 
 ### Supervised Learning:
 The point of any machine learning task is to get some actionable results out of the data that we put in,
 and supervised learning will help us achieve that goal.
 The main methods being considered are chi-squared feature selection, decision trees, regression.
 
-#### [Chi-Squared Feature Selection]
+#### [Chi-Squared Feature Selection](https://towardsdatascience.com/chi-square-test-for-feature-selection-in-machine-learning-206b1f0b8223)
 After conducting unsupervised analysis on the numerical data, we wanted to perform analysis on the qualitative data and determined that the chi-squared test for feature selection would be helpful in figuring out which variables are dependent with whether or not a patient lives or dies. We ran sklearn.feature_selection.chi2 on the data with the “died” feature as the target parameter and plotted the results with the highest chi-squared statistics.
 
 #### [Decision Trees](https://en.wikipedia.org/wiki/Decision_tree)
@@ -98,6 +99,7 @@ we expect our model to accurately predict discrete categories of severity in our
 ### **Unsupervised Results**
 Upon downloading our dataset, which was composed of patient-by-patient data describing things like sex, age, preexisting conditions, and symptoms, the first thing we had to do was make it suitable for machine learning methods in general. This means we had to eliminate columns/features that were extraneous or unrelated to our problem. Then, we used pandas to convert our dataset into a dataframe, encoded categorical data into a one-hot format, and normalized data for use in a correlation map. Next, we moved on to performing key unsupervised learning techniques on our dataset, such as visualizations (correlation plots and heatmaps), dimensionality reduction (PCA), and clustering (K-means). These techniques provided insight into the structure of our data, what features correlated with others, what we could do to make supervised learning easier, and how the data clustered in its space.
 
+#### Pairplots
 <p align="center">
     <img src="assets/pairplot clean.png" width=50%/>
     <br>
@@ -111,16 +113,25 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
     Pair Plot detail
 </p>
 
+#### Correlation Matrix
 <p align="center">
     <img src="assets/numcorr.png" width=50%/>
     <br>
     Correlation for numerical data
 </p>
+We computed correlations only among numeric features, as well as our one target categorical feature, which represents whether a patient ended up in the ICU or died, because correlation plots do not capture relationships between one-hot encoded data very well. Those features with the highest correlation are the most likely to be redundant in some fashion, which can help us perform unsupervised feature selection. For example, notice that systolic blood pressure and diastolic blood pressure have a high correlation, so we may choose to eliminate one or combine them if we need to reduce features. This was also helpful in determining which numeric features are most strongly correlated with dying or having to go to the ICU. For example, age, length of stay (LOS), and D-dimer were all relatively correlated with death and ICU visits.
+
+#### t-SNE & K-Means
 <p align="center">
     <img src="assets/t-sne_kmeans.png" width=50%/>
     <br>
-    Data projected using t-SNE to two dimensions, then clustered using k-means. Different shapes represent the two clusters. Blue datapoints are those who died or went to the ICU, while orange datapoints are those who did not.
+    Data, t-SNE projected and clustered using k-means. 
+    Shapes represent the two clusters. 
+    Blue are those who died or went to the ICU, while orange did not.
 </p>
+We were correct in our assumption that the data would naturally be clustered using 2 clusters, as evidenced by the visible clustering of the positions of datapoints. Unfortunately, these clusters were not effective at filtering those who died or went to the ICU, as shown by the relatively uniform distribution of color in both clusters. We concluded that this must be a result of one of the following:
+- t-SNE projected the data in such a way that it created "phantom" clusters, which is a common problem when the parameters of the algorithm are off
+- The clusters are a result of a different latent categorization instead of being related to death or going to ICU.
 
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
