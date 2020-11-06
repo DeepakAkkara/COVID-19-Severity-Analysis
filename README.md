@@ -36,7 +36,9 @@ By reducing the amount of dimensions/features we have to process, we are able to
 features and reduce the computational power needed and the likelihood of overfitting.
 
 #### [Pair Plots](https://seaborn.pydata.org/generated/seaborn.pairplot.html)
-Pair plots are a useful unsupervised visualization for determining pairwise relationships among features in a dataset. We decided to create pairplots for all numerical columns in the dataset, since continuous values can be plotted much more easily on a pairplot than one-hot encoded categorical features.
+Pair plots are a useful unsupervised visualization for determining pairwise relationships among features in a dataset. Each graph in a pairplot is a scatterplot of data points only considering each pair of features. On the diagonal, a univariate distribution of each feature is shown instead. 
+
+We decided to create pairplots for all numerical columns in the dataset, since continuous values can be plotted much more easily on a pairplot than one-hot encoded categorical features.
 
 #### [Correlation Matrix](https://en.wikipedia.org/wiki/Correlation_and_dependence#Correlation_matrices)
 One of the most important unsupervised techniques we used was creating a correlation matrix of all of our numerical data. This allows us to see which features are most strongly correlated with one another, helping us eliminate redundancy in the future as well as find the columns most strongly correlated with ending up in the ICU or dying.
