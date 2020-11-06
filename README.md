@@ -130,6 +130,7 @@ We computed correlations only among numeric features, as well as our one target 
     Blue are those who died or went to the ICU, while orange did not.
 </p>
 We were correct in our assumption that the data would naturally be clustered using 2 clusters, as evidenced by the visible clustering of the positions of datapoints. Unfortunately, these clusters were not effective at filtering those who died or went to the ICU, as shown by the relatively uniform distribution of color in both clusters. We concluded that this must be a result of one of the following:
+
 - t-SNE projected the data in such a way that it created "phantom" clusters, which is a common problem when the parameters of the algorithm are off
 - The clusters are a result of a different latent categorization instead of being related to death or going to ICU.
 
