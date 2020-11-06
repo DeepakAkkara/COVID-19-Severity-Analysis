@@ -116,6 +116,11 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
     <br>
     Correlation for numerical data
 </p>
+<p align="center">
+    <img src="assets/t-sne_kmeans.png" width=50%/>
+    <br>
+    Data projected using t-SNE to two dimensions, then clustered using k-means. Different shapes represent the two clusters. Blue datapoints are those who died or went to the ICU, while orange datapoints are those who did not.
+</p>
 
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
