@@ -93,35 +93,32 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
     <img src="assets/pairplot detail.png" width=50%/>
     <br>
     Pair Plot detail
-    <br>
-    What these pair plots showed is not only the relationships of numerical factors with each other,
-    but equally importantly, the univariate distributions of these factors split up based on class. 
-    As shown, the distributions can help decide the relative importance of each factor by
-    showing discrepancies between distributions for dead/seriously-affected patients and non-ICU patients.
 </p>
+What these pair plots showed is not only the relationships of numerical factors with each other,
+but equally importantly, the univariate distributions of these factors split up based on class. 
+As shown, the distributions can help decide the relative importance of each factor by
+showing discrepancies between distributions for dead/seriously-affected patients and non-ICU patients.
 
 <p align="center">
     <img src="assets/numcorr.png" width=50%/>
     <br>
     Correlation for numerical data
-    <br>
-    This visualization was important because it allowed us to see what factors had the most
-    influence or correlation with the latent variables.
-    Because certain factors are more important, we can cut off extraneous factors and create a simpler,
-    faster, more understandable final model without having to record that many attributes of each patient.
 </p>
+This visualization was important because it allowed us to see what factors had the most
+influence or correlation with the latent variables.
+Because certain factors are more important, we can cut off extraneous factors and create a simpler,
+faster, more understandable final model without having to record that many attributes of each patient.
 
 <p align="center">
     <img src="assets/radviz.png" width=50%/>
     <br>
     RadViz for numerical data
-    <br>
-    Using our correlation data, we were able to depict a more graphical interpretation of what each factor means.
-    This construction was built with scikit's Yellowbrick and shows a standardized view of how
-    the factors most correlated with death/illness can be graphically distinguished from each other.
-    From this graph, we see that entries with death/illness tend towards having higher levels of D-Dimer,
-    which wasn't something that could be guessed without medical expertise.
 </p>
+Using our correlation data, we were able to depict a more graphical interpretation of what each factor means.
+This construction was built with scikit's Yellowbrick and shows a standardized view of how
+the factors most correlated with death/illness can be graphically distinguished from each other.
+From this graph, we see that entries with death/illness tend towards having higher levels of D-Dimer,
+which wasn't something that could be guessed without medical expertise.
 
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
