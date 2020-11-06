@@ -136,6 +136,17 @@ We were correct in our assumption that the data would naturally be clustered usi
 + t-SNE projected the data in such a way that it created "phantom" clusters, which is a common problem when the parameters of the algorithm are off
 + The clusters are a result of a different latent categorization instead of being related to death or going to ICU.
 
+### **Supervised Results**
+
+#### Chi-Squared Feature Selection
+<p align="center">
+    <img src="assets/chiSquareStatisticsBarGraph.png" width=50%/>
+    <br>
+    Chi-squared statistics by feature. Red bars had p-value < 0.05, indicating dependence between death and the feature.
+</p>
+Using a significance level of p = 0.05, we determined that there are 9 features that are dependent with the boolean ‘died’ variable: CKD(Chronic Kidney Disease), ARDS (Acute Respiratory Distress Syndrome), Myalgias, IDDM (Insulin Dependent Diabetes Mellitus, Fever, NV (Nausea-vomiting), Troponin.0612, Afib (Atrial Fibrillation) and CAD (Coronary Artery Disease). Due to the Admitxflu, ActiveLungCancer, and Marijuana columns having nan values, we decided we cannot interpret those and stuck with the null hypothesis that these three columns are independent of the ‘died’ column. These results are helpful in that they select 9 features out of 64 that we can say will determine whether a patient will die as these 9 features have a p-value below 0.05, meaning we reject the null hypothesis in favor of the alternate hypothesis that ‘died’ is dependent on those 9 categories.
+
+
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
 into how the COVID-19 pandemic should best be handled. At the institutional level, hospitals can use our risk predictions
