@@ -105,7 +105,7 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
 <p align="center">
     <img src="assets/pairplot clean.png" width=50%/>
     <br>
-    Pair Plots showing correlations and relationships between all numerical features and delimited by death/ICU.
+    Pair Plots showing correlations and relationships between all numerical features and delimited by death/ICU. Orange patients died and/or were in the ICU.
     (click for more)
 </p>
 
@@ -114,6 +114,12 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
     <br>
     Pair Plot detail
 </p>
+There were a number of pairplots which revealed some insight. For example, the length of stay (LOS) feature, shows that on average, patients who stayed in the hospital longer tended to be more likely to die and/or end up in the ICU. 
+
+In addition, we can see extremes in different categories in which almost everyone who had above or below a threshold in a specific category had the same outcome. For example, out of the 9 people who had a Low02D1 value less than 82, 8 of them had a severe case of COVID-19. Similarly, every patient with an O2 level below 80 at hospital admission had a severe case of COVID-19. Also, every patient with a ferritin value of over 4000, avoided both dying and going to the ICU.  
+
+Finally, there were a few plots where it appeared a combination of factors resulted in a higher chance of a severe case of COVID-19. Patients with a higher number of ‘Num_Other_Risk_Factors’ were more likely to die and patients who were older (had a higher value in the  age feature). In the pair plot between these two categories there was a slight positive relationship between the features.
+
 
 #### Correlation Matrix
 <p align="center">
