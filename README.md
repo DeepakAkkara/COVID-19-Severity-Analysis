@@ -96,7 +96,7 @@ in a severe case in comparison to COVID-19 in conjunction with diabetes. For the
 we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
 
 ### **Unsupervised Results**
-Upon downloading our dataset, which was composed of patient-by-patient data describing things like sex, age, preexisting conditions, and symptoms, the first thing we had to do was make it suitable for machine learning methods in general. This means we had to eliminate columns/features that were extraneous or unrelated to our problem. Then, we used pandas to convert our dataset into a dataframe, encoded categorical data into a one-hot format, and normalized data for use in a correlation map. Next, we moved on to performing key unsupervised learning techniques on our dataset, such as visualizations (correlation plots and heatmaps), dimensionality reduction (PCA), and clustering (K-means). These techniques provided insight into the structure of our data, what features correlated with others, what we could do to make supervised learning easier, and how the data clustered in its space.
+Upon downloading our dataset, which was composed of patient-by-patient data describing things like sex, age, preexisting conditions, and symptoms, the first thing we had to do was make it suitable for machine learning methods in general. This means we had to eliminate columns/features that were extraneous or unrelated to our problem (such as factors which would be unknown at the time of arrival to the hospital and factors which were uniform over all patients). Then, we used pandas to convert our dataset into a dataframe, encoded categorical data into a one-hot format, and normalized data for use in a correlation map. Next, we moved on to performing key unsupervised learning techniques on our dataset, such as visualizations (correlation plots and heatmaps), dimensionality reduction (PCA), and clustering (K-means). These techniques provided insight into the structure of our data, what features correlated with others, what we could do to make supervised learning easier, and how the data clustered in its space.
 
 #### Pairplots
 <p align="center">
@@ -111,11 +111,17 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
     <br>
     Pairplot detail
 </p>
+
+What these pair plots showed is not only the relationships of numerical factors with each other,
+but equally importantly, the univariate distributions of these factors split up based on class. 
+As shown, the distributions can help decide the relative importance of each factor by
+showing discrepancies between distributions for dead/seriously-affected patients and non-ICU patients.
 There were a number of pairplots which revealed some insight. For example, the length of stay (LOS) feature, shows that on average, patients who stayed in the hospital longer tended to be more likely to die and/or end up in the ICU. 
 
 In addition, we can see extremes in different categories in which almost everyone who had above or below a threshold in a specific category had the same outcome. For example, out of the 9 people who had a Low02D1 value less than 82, 8 of them had a severe case of COVID-19. Similarly, every patient with an O2 level below 80 at hospital admission had a severe case of COVID-19. Also, every patient with a ferritin value of over 4000, avoided both dying and going to the ICU.  
 
 Finally, there were a few plots where it appeared a combination of factors resulted in a higher chance of a severe case of COVID-19. Patients with a higher number of ‘Num_Other_Risk_Factors’ were more likely to die and patients who were older (had a higher value in the  age feature). In the pair plot between these two categories there was a slight positive relationship between the features.
+
 
 
 #### Correlation Matrix
@@ -124,7 +130,23 @@ Finally, there were a few plots where it appeared a combination of factors resul
     <br>
     Correlation for numerical data
 </p>
+
 We computed correlations only among numeric features, as well as our one target categorical feature, which represents whether a patient ended up in the ICU or died, because correlation plots do not capture relationships between one-hot encoded data very well. Those features with the highest correlation are the most likely to be redundant in some fashion, which can help us perform unsupervised feature selection. For example, notice that systolic blood pressure and diastolic blood pressure have a high correlation, so we may choose to eliminate one or combine them if we need to reduce features. This was also helpful in determining which numeric features are most strongly correlated with dying or having to go to the ICU. For example, age, length of stay (LOS), and D-dimer were all relatively correlated with death and ICU visits.
+This visualization was important because it allowed us to see what factors had the most
+influence or correlation with the latent variables.
+Because certain factors are more important, we can cut off extraneous factors and create a simpler,
+faster, more understandable final model without having to record that many attributes of each patient.
+
+<p align="center">
+    <img src="assets/radviz.png" width=50%/>
+    <br>
+    RadViz for numerical data
+</p>
+Using our correlation data, we were able to depict a more graphical interpretation of what each factor means.
+This construction was built with scikit's Yellowbrick and shows a standardized view of how
+the factors most correlated with death/illness can be graphically distinguished from each other.
+From this graph, we see that entries with death/illness tend towards having higher levels of D-Dimer,
+which wasn't something that could be guessed without medical expertise.
 
 #### t-SNE & K-Means
 <p align="center">
@@ -162,6 +184,9 @@ We hope that this increase in information will drive progress toward ending the 
 
 ### **Challenges: Unsupervised Portion**
 One of our biggest challenges is that our dataset is very small and only has a little over 100 rows. We were unable to find larger datasets with de-identified patient data for free. Since we are interested in feature selection in order to determine which factors have the highest impact on COVID-19 outcomes, projecting our feature set onto a new basis using PCA may be unviable, so we needed to find alternative methods for dimensionality reduction that allow us to select the most important original features.
+
+### **Future Plans**
+For our supervised portion, we're planning on using a Naive Bayes model to estimate a posterior probability of dying or having an illness based on attributes of each patient. What this will help us do is determine the severity of cases such that the most severe cases can have a larger priority when allocating ICU beds. Thus, the range of our values will be in the range [0,1] due to the nature of our posterior probability predictions, with probabilities skewed towards 0 because the chance of harm from COVID is considerable but generally low. This skew could be fixed by something like a sigmoid function, which would turn our Naive Bayes results into a more approachable probability distribution.
 
 ## **References**
 - A. I. F. AI, “COVID-19 Open Research Dataset Challenge (CORD-19),” Kaggle, 28-Sep-2020. [Online]. Available: https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/tasks?taskId=558. [Accessed: 02-Oct-2020]. 
