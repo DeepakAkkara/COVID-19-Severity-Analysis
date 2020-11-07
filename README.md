@@ -44,12 +44,9 @@ We decided to create pairplots for all numerical columns in the dataset, since c
 One of the most important unsupervised techniques we used was creating a correlation matrix of all of our numerical data. This allows us to see which features are most strongly correlated with one another, helping us eliminate redundancy in the future as well as find the columns most strongly correlated with ending up in the ICU or dying.
 
 #### [Principal Component Analysis](https://en.wikipedia.org/wiki/Principal_component_analysis)
-An important algorithm in dimensionality reduction is principal component analysis (PCA),
-which is an unsupervised technique.
-Principal component analysis works by projecting higher-dimensional spaces to lower-dimensional bases, where the new
-bases correspond to the most important components of the data (hence the name principal component analysis).
-Essentially, the goal of PCA is to reduce the amount of dimensions as much as possible
-while keeping as much information as possible.
+A common algorithm in dimensionality reduction is principal component analysis (PCA). 
+We ran principal component analysis on the numerical data that we had; however the results were not very useful to us and we did not pursue the algorithm further. Our project involves determining which features increase the probability of dying or being severely impacted (ICU) by COVID-19, but PCA projects our feature set onto a new basis entirely, which does not allow us to select the most important original features.
+
 
 #### [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)
 t-distributed stochastic neighbor embedding is another dimensionality reduction technique, typically used to provide easy 2D or 3D
@@ -105,14 +102,14 @@ Upon downloading our dataset, which was composed of patient-by-patient data desc
 <p align="center">
     <img src="assets/pairplot clean.png" width=50%/>
     <br>
-    Pair Plots showing correlations and relationships between all numerical features and delimited by death/ICU. Orange patients died and/or were in the ICU.
+    Pairplots showing correlations and relationships between all numerical features and delimited by death/ICU. Orange patients died and/or were in the ICU.
     (click for more)
 </p>
 
 <p align="center">
     <img src="assets/pairplot detail.png" width=50%/>
     <br>
-    Pair Plot detail
+    Pairplot detail
 </p>
 There were a number of pairplots which revealed some insight. For example, the length of stay (LOS) feature, shows that on average, patients who stayed in the hospital longer tended to be more likely to die and/or end up in the ICU. 
 
@@ -164,7 +161,7 @@ Additionally, as a society, we can identify those individuals who are most at ri
 We hope that this increase in information will drive progress toward ending the pandemic.
 
 ### **Challenges: Unsupervised Portion**
-One of our biggest challenges is that our dataset is very small and only has a little over 100 rows. We were unable to find larger datasets with de-identified patient data for free. Since we are interested in feature selection in order to determine which factors have the highest impact on COVID-19 outcomes, projecting our feature set onto a new basis using PCA may be unviable, so we will need to find an alternative method for dimensionality reduction that allows us to select the most important original features. We attempted to use a correlation matrix to identify the most heavily correlated features to eliminate, but the results were weaker than expected, potentially due to the one-hot encoded features. The one-hot encoding also made some of our initial methods, like a heatmap visualization, difficult to interpret.
+One of our biggest challenges is that our dataset is very small and only has a little over 100 rows. We were unable to find larger datasets with de-identified patient data for free. Since we are interested in feature selection in order to determine which factors have the highest impact on COVID-19 outcomes, projecting our feature set onto a new basis using PCA may be unviable, so we needed to find alternative methods for dimensionality reduction that allow us to select the most important original features.
 
 ## **References**
 - A. I. F. AI, “COVID-19 Open Research Dataset Challenge (CORD-19),” Kaggle, 28-Sep-2020. [Online]. Available: https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/tasks?taskId=558. [Accessed: 02-Oct-2020]. 
