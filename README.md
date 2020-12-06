@@ -167,6 +167,7 @@ Recall is a measure of how much of the actual positives were returned as positiv
 
 #### Accuracy
 Accuracy is a measure of the correctness of the classifier. In order to calculate the accuracy, we add the number of correctly predicted positives with the number of correctly predicted negatives and divide that by the total number of rows in the dataset.
+Since the classes of the dataset were relatively balanced, accuracy might be a more useful metric than in other datasets with very low occurrences of certain classes. In our case, since around 58.6% of entries were false, a trivial solution would yield around that accuracy as a metric.
 
 
 #### F1-Score
@@ -199,7 +200,7 @@ This parameter denotes the amount of [additive smoothing](https://en.wikipedia.o
 present in the model,
 where additive smoothing is essentially a small value added to probability calculations such that
 values of zero for certain probabilities don't turn an entire posterior probability into zero.
-`sklearn` provides the `GridSearchCV` object as a way to exhaustively try all values of certain parameters
+`sklearn` provides the **`GridSearchCV`** object as a way to exhaustively try all values of certain parameters
 (defined via a python `dict`), and score each parameter value based on cross-validation metrics:
 
 <p align="center">
@@ -227,6 +228,12 @@ other less-robust metrics (like using one specific train-test split) often yield
 no change in performance from the default `alpha` value.
 Fortunately, another overarching change (feature selection) improved our model's performance significantly,
 which will be discussed later.
+
+#### Feature Selection:
+Using the results of the Chi-squared tests allowed the model to increase the F1 score from 0.78 to 0.95,
+which provides an extremely significant increase in performances.
+By limiting the features to ones that were most significant with respect to `Death_ICU`,
+the model was able to eliminate noise in the dataset, increase performance, and be generally more lightweight.
 
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
