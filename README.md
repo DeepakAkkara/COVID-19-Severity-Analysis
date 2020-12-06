@@ -55,7 +55,7 @@ visualizations of high dimensional data, which is extremely useful for interpret
 #### [K-Means Clustering](https://en.wikipedia.org/wiki/K-means_clustering)
 We used the k-means clustering algorithm on our data after projecting into a 2D space for visualizations using t-SNE. Since we know our non-target features come from two latent classes (those who ended up in the ICU and those who didn’t), we decided to use 2 clusters and visualize the k-means clusters in the dimensionality reduced data.
 
-### Supervised Learning:
+### Supervised Learning
 The point of any machine learning task is to get some actionable results out of the data that we put in,
 and supervised learning will help us achieve that goal.
 The main methods being considered are chi-squared feature selection and various naive Bayes classifiers.
