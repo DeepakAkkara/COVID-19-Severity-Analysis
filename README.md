@@ -176,6 +176,17 @@ The F1 score is another way to measure the accuracy of a classifier. F1 combines
 In a real-world setting, where we are attempting to measure the potential severity of a patient with COVID-19, the number of true negatives is not as important as the number of false positives or the number of false negatives. For example, telling patients who will never need to go to the ICU that they will soon be in the ICU (False Positive) and keeping them in the hospital for continuous monitoring will take away much needed hospital beds from patients who desperately need them. On the other hand, telling patients that will fall severely ill and will soon need to go to the ICU that they are fine (False Negative) and sending them home early will also divert hospital resources from those who need it most. For this reason, we decided to focus primarily on maximizing the F1-score which accounts for both False Positives and False Negatives.
 
 ### Naive Bayes Classifiers
+#### Complement Naive Bayes
+The Complement Naive Bayes method was designed to minimize the effects of class imbalance by comparing the probabilities
+of *not* belonging to certain classes rather than comparing probabilities of belonging to one certain class.
+After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2. We were able to achieve an f-measure of 0.800 after tuning the hyperparameters.  
+The Complement Naive Bayes was not chosen as our final classifier since our data was already relatively balanced. 
+
+#### Multinomial Naive Bayes
+We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method.
+Because Multinomial Naive Bayes was designed to work with large counts of data (such as word occurrences in text),
+this method was not as suitable for the one-hot encoded data present in our dataset.
+
 #### Bernoulli Naive Bayes
 After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.78.     
 We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 15%, from 0.78 to 0.95, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.  
@@ -191,17 +202,6 @@ Also, because of feature selection, we were able to reduce the amount of needed 
 less data had to be collected in order to yield a meaningful result.
 By using the `predict_proba()` method, the classifier can extract a posterior probability, which
 can be used to decide on the severity of certain patients.
-
-#### Complement Naive Bayes
-The Complement Naive Bayes method was designed to minimize the effects of class imbalance by comparing the probabilities
-of *not* belonging to certain classes rather than comparing probabilities of belonging to one certain class.
-After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2. We were able to achieve an f-measure of 0.800 after tuning the hyperparameters.  
-The Complement Naive Bayes was not chosen as our final classifier since our data was already relatively balanced. 
-
-#### Multinomial Naive Bayes
-We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method.
-Because Multinomial Naive Bayes was designed to work with large counts of data (such as word occurrences in text),
-this method was not as suitable for the one-hot encoded data present in our dataset.
 
 #### Hyperparameter Tuning
 In any machine learning model, there are parameters of the model that programmers can use in order to
