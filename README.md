@@ -184,7 +184,7 @@ We also tried Bernoulli Naive Bayes using just the features that the chi-square 
 After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2 for test_train_split(). We were able to achieve an f-measure of 0.800 after tuning the alpha value and making it equal to 0.6.  
 
 #### Multinomial Naive Bayes
-We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method. However, this is not entirely surprising as our data is imbalanced, making this classifier technique less effective compared to Complement Naive Bayes, which is better suited for imbalanced datasets. 
+We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method. However, this is not entirely surprising as our data is slightly imbalanced, making this classifier technique less effective compared to Complement Naive Bayes, which is better suited for imbalanced datasets. 
 
 
 
