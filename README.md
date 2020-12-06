@@ -78,14 +78,9 @@ Complement Naive Bayes classifiers are a modification on multinomial classifiers
 Bernoulli Naive Bayes classifiers assume that the data is distributed according to multivariate Bernoulli distributions -- this means that each feature is a boolean-valued feature, where the feature is either present or absent. These classifiers are typically used for text-based classification where each column represents a word, and each datapoint's value in that column is either 0 (indicating the word is absent from the document) or 1 (indicating the word is present). We used this classifier on all of our one-hot encoded, categorical features in our data.
 
 ## **Results**
-Our ideal results will show a clear relation between severity and various demographic backgrounds.
-The principal component analysis will ideally identify the comorbidities that lead to the highest severity. 
-For example, we may find that COVID-19 in conjunction with heart disease may be more likely to result
-in a severe case in comparison to COVID-19 in conjunction with diabetes. For the supervised portion of the project,
-we expect our model to accurately predict discrete categories of severity in our training set based on other relevant patient information.
-
-
+****************************
 ### **Unsupervised Results**
+****************************
 Upon downloading our dataset, which was composed of patient-by-patient data describing things like sex, age, preexisting conditions, and symptoms, the first thing we had to do was make it suitable for machine learning methods in general. This means we had to eliminate columns/features that were extraneous or unrelated to our problem (such as factors which would be unknown at the time of arrival to the hospital and factors which were uniform over all patients). Then, we used pandas to convert our dataset into a dataframe, encoded categorical data into a one-hot format, and normalized data for use in a correlation map. Next, we moved on to performing key unsupervised learning techniques on our dataset, such as visualizations (correlation plots and heatmaps), dimensionality reduction (PCA), and clustering (K-means). These techniques provided insight into the structure of our data, what features correlated with others, what we could do to make supervised learning easier, and how the data clustered in its space.
 
 #### Pairplots
@@ -152,8 +147,9 @@ We were correct in our assumption that the data would naturally be clustered usi
 + The clusters are a result of a different latent categorization instead of being related to death or going to ICU.
 
 ### **Supervised Results**
+****************************
 
-#### Chi-Squared Feature Selection
+### Chi-Squared Feature Selection
 <p align="center">
     <img src="assets/chiSquareStatisticsBarGraph.png" width=50%/>
     <br>
@@ -164,23 +160,25 @@ Using a significance level of p = 0.05, we determined that there are 9 features 
 ### Classification Metrics
 For this project we used a variety of metrics to find the ideal hyperparameters for our model. We primarily measured 4 different metrics for performance: the F1 score, precision, recall, and accuracy. It is important to note that for our classification problem, there were only 2 classes to choose from. Every patient was either in Death_ICU or not in Death_ICU. This means that randomly picking between the two categories could yield an accuracy around 50%. In addition, our dataset had 116 total rows with 48 of them being in the Death_ICU category and 68 not being in Death_ICU. This also means that a classifier that picked every data point as false would be able to get around 58.6% accuracy.
 
-#### Precision: 
+#### Precision
 Precision is a measure of how correctly the returned positives were predicted. In order to calculate the precision, we divide the number of correctly predicted positives by the total number of predicted positives. Maximizing the precision will decrease the number of false positives (actual negatives that were classified as positive) the classifier returns. 
 
-#### Recall: 
+#### Recall
 Recall is a measure of how much of the actual positives were returned as positive. To calculate the recall we divide the number of correctly predicted positives by the total number of positives in the dataset. Maximizing the recall will decrease the number of false negatives (actual positives that were classified as negative) the classifier returns.
 
-#### Accuracy:
+#### Accuracy
 Accuracy is a measure of the correctness of the classifier. In order to calculate the accuracy, we add the number of correctly predicted positives with the number of correctly predicted negatives and divide that by the total number of rows in the dataset.
 
 
-#### F1-Score:
+#### F1-Score
 The F1 score is another way to measure the accuracy of a classifier. F1 combines both precision and recall into one metric. We calculate the F1 score by multiplying our precision and recall together and then multiplying by 2 and then dividing by the sum of our precision and recall. Maximizing the F1 score will reduce both the number of false positives and the number of false negatives the classifier returns. However one downside of the F-score is that it does not take into account the number of True Negatives (actual negatives that were correctly returned as negative). 
 
 In a real-world setting, where we are attempting to measure the potential severity of a patient with COVID-19, the number of true negatives is not as important as the number of false positives or the number of false negatives. For example, telling patients who will never need to go to the ICU that they will soon be in the ICU (False Positive) and keeping them in the hospital for continuous monitoring will take away much needed hospital beds from patients who desperately need them. On the other hand, telling patients that will fall severely ill and will soon need to go to the ICU that they are fine (False Negative) and sending them home early will also divert hospital resources from those who need it most. For this reason, we decided to focus primarily on maximizing the F1-score which accounts for both False Positives and False Negatives.
 #### Bernoulli Naive Bayes
 After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2 and making the random_state parameter equal to 13 for the test_train_split() method. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.833.     
 We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 10%, from 0.833 to 0.947, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.  
+
+### Naive Bayes Classifiers
 
 #### Complement Naive Bayes
 After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2 and a random_state value of 20 for test_train_split(). We were able to achieve an f-measure of 0.800 after tuning the hyperparameters.  
