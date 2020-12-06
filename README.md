@@ -178,7 +178,11 @@ In a real-world setting, where we are attempting to measure the potential severi
 #### Bernoulli Naive Bayes
 After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2 and making the random_state parameter equal to 13 for the test_train_split() method. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.833.     
 We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 10%, from 0.833 to 0.947, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.  
-
+<p align="center">
+    <img src="assets/bernoulli_nb_best_results.png" width=50%/>
+    <br>
+    Results from best Bernoulli Naive Bayes model
+</p>
 
 
 #### Complement Naive Bayes
