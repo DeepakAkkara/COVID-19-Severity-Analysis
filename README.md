@@ -67,17 +67,17 @@ we expect our model to accurately predict discrete categories of severity in our
 ## Metrics
 For this project we used a variety of metrics to find the ideal hyperparameters for our model. We primarily measured 4 different metrics for performance: the F1 score, precision, recall, and accuracy. It is important to note that for our classification problem, there were only 2 classes to choose from. Every patient was either in Death_ICU or not in Death_ICU. This means that randomly picking between the two categories could yield an accuracy around 50%. In addition, our dataset had 116 total rows with 48 of them being in the Death_ICU category and 68 not being in Death_ICU. This also means that a classifier that picked every data point as false would be able to get around 58.6% accuracy.
 
-# Precision: 
+#### Precision: 
 Precision is a measure of how correctly the returned positives were predicted. In order to calculate the precision, we divide the number of correctly predicted positives by the total number of predicted positives. Maximizing the precision will decrease the number of false positives (actual negatives that were classified as positive) the classifier returns. 
 
-# Recall: 
+#### Recall: 
 Recall is a measure of how much of the actual positives were returned as positive. To calculate the recall we divide the number of correctly predicted positives by the total number of positives in the dataset. Maximizing the recall will decrease the number of false negatives (actual positives that were classified as negative) the classifier returns.
 
-# Accuracy:
+#### Accuracy:
 Accuracy is a measure of the correctness of the classifier. In order to calculate the accuracy, we add the number of correctly predicted positives with the number of correctly predicted negatives and divide that by the total number of rows in the dataset.
 
 
-# F1-Score:
+#### F1-Score:
 The F1 score is another way to measure the accuracy of a classifier. F1 combines both precision and recall into one metric. We calculate the F1 score by multiplying our precision and recall together and then multiplying by 2 and then dividing by the sum of our precision and recall. Maximizing the F1 score will reduce both the number of false positives and the number of false negatives the classifier returns. However one downside of the F-score is that it does not take into account the number of True Negatives (actual negatives that were correctly returned as negative). 
 
 In a real-world setting, where we are attempting to measure the potential severity of a patient with COVID-19, the number of true negatives is not as important as the number of false positives or the number of false negatives. For example, telling patients who will never need to go to the ICU that they will soon be in the ICU (False Positive) and keeping them in the hospital for continuous monitoring will take away much needed hospital beds from patients who desperately need them. On the other hand, telling patients that will fall severely ill and will soon need to go to the ICU that they are fine (False Negative) and sending them home early will also divert hospital resources from those who need it most. For this reason, we decided to focus primarily on maximizing the F1-score which accounts for both False Positives and False Negatives.
