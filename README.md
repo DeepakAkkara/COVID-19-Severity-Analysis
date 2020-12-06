@@ -77,19 +77,6 @@ Complement Naive Bayes classifiers are a modification on multinomial classifiers
 ##### Bernoulli Naive Bayes
 Bernoulli Naive Bayes classifiers assume that the data is distributed according to multivariate Bernoulli distributions -- this means that each feature is a boolean-valued feature, where the feature is either present or absent. These classifiers are typically used for text-based classification where each column represents a word, and each datapoint's value in that column is either 0 (indicating the word is absent from the document) or 1 (indicating the word is present). We used this classifier on all of our one-hot encoded, categorical features in our data.
 
-#### [Regression](https://en.wikipedia.org/wiki/Regression_analysis)
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Linear_regression.svg/1200px-Linear_regression.svg.png" width = 50%/>
-</p>
-Regression analysis is a way to approximate the relationship between our dependent variable
-and our independent variables.
-The most basic form of regression is univariate linear regression, in which one tries to fit a straight line
-that captures the relationship between one dependent and one independent variable.
-In our case, we'll be trying to build an algorithm that learns the relationships between some continuous, numerical
-output and the input features (different attributes of patients).
-By using regression, we could be able to return some percentage chance of developing a serious illness
-based on the combination of COVID-19 with other risk factors (our inputs).
-
 ## **Results**
 Our ideal results will show a clear relation between severity and various demographic backgrounds.
 The principal component analysis will ideally identify the comorbidities that lead to the highest severity. 
@@ -173,7 +160,24 @@ We were correct in our assumption that the data would naturally be clustered usi
     Chi-squared statistics by feature. Red bars had p-value < 0.05, indicating dependence between death and the feature.
 </p>
 Using a significance level of p = 0.05, we determined that there are 9 features that are dependent with the boolean ‘died’ variable: CKD(Chronic Kidney Disease), ARDS (Acute Respiratory Distress Syndrome), Myalgias, IDDM (Insulin Dependent Diabetes Mellitus, Fever, NV (Nausea-vomiting), Troponin.0612, Afib (Atrial Fibrillation) and CAD (Coronary Artery Disease). Due to the Admitxflu, ActiveLungCancer, and Marijuana columns having nan values, we decided we cannot interpret those and stuck with the null hypothesis that these three columns are independent of the ‘died’ column. These results are helpful in that they select 9 features out of 64 that we can say will determine whether a patient will die as these 9 features have a p-value below 0.05, meaning we reject the null hypothesis in favor of the alternate hypothesis that ‘died’ is dependent on those 9 categories.  
-    
+
+### Classification Metrics
+For this project we used a variety of metrics to find the ideal hyperparameters for our model. We primarily measured 4 different metrics for performance: the F1 score, precision, recall, and accuracy. It is important to note that for our classification problem, there were only 2 classes to choose from. Every patient was either in Death_ICU or not in Death_ICU. This means that randomly picking between the two categories could yield an accuracy around 50%. In addition, our dataset had 116 total rows with 48 of them being in the Death_ICU category and 68 not being in Death_ICU. This also means that a classifier that picked every data point as false would be able to get around 58.6% accuracy.
+
+#### Precision: 
+Precision is a measure of how correctly the returned positives were predicted. In order to calculate the precision, we divide the number of correctly predicted positives by the total number of predicted positives. Maximizing the precision will decrease the number of false positives (actual negatives that were classified as positive) the classifier returns. 
+
+#### Recall: 
+Recall is a measure of how much of the actual positives were returned as positive. To calculate the recall we divide the number of correctly predicted positives by the total number of positives in the dataset. Maximizing the recall will decrease the number of false negatives (actual positives that were classified as negative) the classifier returns.
+
+#### Accuracy:
+Accuracy is a measure of the correctness of the classifier. In order to calculate the accuracy, we add the number of correctly predicted positives with the number of correctly predicted negatives and divide that by the total number of rows in the dataset.
+
+
+#### F1-Score:
+The F1 score is another way to measure the accuracy of a classifier. F1 combines both precision and recall into one metric. We calculate the F1 score by multiplying our precision and recall together and then multiplying by 2 and then dividing by the sum of our precision and recall. Maximizing the F1 score will reduce both the number of false positives and the number of false negatives the classifier returns. However one downside of the F-score is that it does not take into account the number of True Negatives (actual negatives that were correctly returned as negative). 
+
+In a real-world setting, where we are attempting to measure the potential severity of a patient with COVID-19, the number of true negatives is not as important as the number of false positives or the number of false negatives. For example, telling patients who will never need to go to the ICU that they will soon be in the ICU (False Positive) and keeping them in the hospital for continuous monitoring will take away much needed hospital beds from patients who desperately need them. On the other hand, telling patients that will fall severely ill and will soon need to go to the ICU that they are fine (False Negative) and sending them home early will also divert hospital resources from those who need it most. For this reason, we decided to focus primarily on maximizing the F1-score which accounts for both False Positives and False Negatives.
 #### Bernoulli Naive Bayes
 After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2 and making the random_state parameter equal to 13 for the test_train_split() method. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.833.     
 We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 10%, from 0.833 to 0.947, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.  
@@ -224,26 +228,6 @@ other less-robust metrics (like using one specific train-test split) often yield
 no change in performance from the default `alpha` value.
 Fortunately, another overarching change (feature selection) improved our model's performance significantly,
 which will be discussed later.
-
-## Metrics
-For this project we used a variety of metrics to find the ideal hyperparameters for our model. We primarily measured 4 different metrics for performance: the F1 score, precision, recall, and accuracy. It is important to note that for our classification problem, there were only 2 classes to choose from. Every patient was either in Death_ICU or not in Death_ICU. This means that randomly picking between the two categories could yield an accuracy around 50%. In addition, our dataset had 116 total rows with 48 of them being in the Death_ICU category and 68 not being in Death_ICU. This also means that a classifier that picked every data point as false would be able to get around 58.6% accuracy.
-
-#### Precision: 
-Precision is a measure of how correctly the returned positives were predicted. In order to calculate the precision, we divide the number of correctly predicted positives by the total number of predicted positives. Maximizing the precision will decrease the number of false positives (actual negatives that were classified as positive) the classifier returns. 
-
-#### Recall: 
-Recall is a measure of how much of the actual positives were returned as positive. To calculate the recall we divide the number of correctly predicted positives by the total number of positives in the dataset. Maximizing the recall will decrease the number of false negatives (actual positives that were classified as negative) the classifier returns.
-
-#### Accuracy:
-Accuracy is a measure of the correctness of the classifier. In order to calculate the accuracy, we add the number of correctly predicted positives with the number of correctly predicted negatives and divide that by the total number of rows in the dataset.
-
-
-#### F1-Score:
-The F1 score is another way to measure the accuracy of a classifier. F1 combines both precision and recall into one metric. We calculate the F1 score by multiplying our precision and recall together and then multiplying by 2 and then dividing by the sum of our precision and recall. Maximizing the F1 score will reduce both the number of false positives and the number of false negatives the classifier returns. However one downside of the F-score is that it does not take into account the number of True Negatives (actual negatives that were correctly returned as negative). 
-
-In a real-world setting, where we are attempting to measure the potential severity of a patient with COVID-19, the number of true negatives is not as important as the number of false positives or the number of false negatives. For example, telling patients who will never need to go to the ICU that they will soon be in the ICU (False Positive) and keeping them in the hospital for continuous monitoring will take away much needed hospital beds from patients who desperately need them. On the other hand, telling patients that will fall severely ill and will soon need to go to the ICU that they are fine (False Negative) and sending them home early will also divert hospital resources from those who need it most. For this reason, we decided to focus primarily on maximizing the F1-score which accounts for both False Positives and False Negatives.
-
-
 
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
