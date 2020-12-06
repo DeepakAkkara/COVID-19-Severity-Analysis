@@ -1,0 +1,24 @@
+# harrison - numerical pairplots
+from google.colab import files
+sns_pp = sns.pairplot(numericals, hue="Death_ICU")
+sns_pp.savefig("abc.png")
+files.download("abc.png") 
+
+
+numCorr = numericals.corr()
+# Generate a mask for the upper triangle
+mask = np.triu(np.ones_like(numCorr, dtype=bool))
+
+# Set up the matplotlib figure
+f, ax = plt.subplots(figsize=(40, 40))
+
+plt.rc('xtick', labelsize=20)
+# plt.rc('ytick', labelsize=20)
+
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(230, 20, as_cmap=True)
+
+# Draw the heatmap with the mask and correct aspect ratio
+sns.set(font_scale=4)
+sns.heatmap(numCorr, mask=mask, cmap=cmap, vmax=.3, center=0,
+            square=True, linewidths=.5, cbar_kws={"shrink": .5})
