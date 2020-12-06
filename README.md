@@ -125,7 +125,6 @@ In addition, we can see extremes in different categories in which almost everyon
 Finally, there were a few plots where it appeared a combination of factors resulted in a higher chance of a severe case of COVID-19. Patients with a higher number of ‘Num_Other_Risk_Factors’ were more likely to die and patients who were older (had a higher value in the  age feature). In the pair plot between these two categories there was a slight positive relationship between the features.
 
 
-
 #### Correlation Matrix
 <p align="center">
     <img src="assets/numcorr.png" width=50%/>
@@ -175,6 +174,47 @@ We were correct in our assumption that the data would naturally be clustered usi
 Using a significance level of p = 0.05, we determined that there are 9 features that are dependent with the boolean ‘died’ variable: CKD(Chronic Kidney Disease), ARDS (Acute Respiratory Distress Syndrome), Myalgias, IDDM (Insulin Dependent Diabetes Mellitus, Fever, NV (Nausea-vomiting), Troponin.0612, Afib (Atrial Fibrillation) and CAD (Coronary Artery Disease). Due to the Admitxflu, ActiveLungCancer, and Marijuana columns having nan values, we decided we cannot interpret those and stuck with the null hypothesis that these three columns are independent of the ‘died’ column. These results are helpful in that they select 9 features out of 64 that we can say will determine whether a patient will die as these 9 features have a p-value below 0.05, meaning we reject the null hypothesis in favor of the alternate hypothesis that ‘died’ is dependent on those 9 categories.
 
 
+#### Hyperparameter Tuning
+In any machine learning model, there are parameters of the model that programmers can use in order to
+adjust the performance and efficiency of models.
+These parameters act as a design choice and allow modelers to push models towards optimal architectures.
+Familiar examples of these include the number of degrees to use in a linear model, the maximum depth of a decision tree,
+and the number of layers in a neural network.
+Because the Naive Bayes model is so simple, the `sklearn` library only provides one parameter: `alpha`.
+This parameter denotes the amount of [additive smoothing](https://en.wikipedia.org/wiki/Additive_smoothing)
+present in the model,
+where additive smoothing is essentially a small value added to probability calculations such that
+values of zero for certain probabilities don't turn an entire posterior probability into zero.
+`sklearn` provides the `GridSearchCV` object as a way to exhaustively try all values of certain parameters
+(defined via a python `dict`), and score each parameter value based on cross-validation metrics:
+
+<p align="center">
+    <img src="assets/hyperparameters.png" width=50%/>
+    <br>
+    Various scoring metrics graphed with respect to values of <code>alpha</code>. (click for more) 
+</p>
+
+Owing to the lightweight nature of our model, this search was able to be run on 100 different values of alpha for four
+different scoring metrics.
+As a result of this search, we determined that the optimal value for `alpha` was `0.6` in our case,
+with each metric giving generally similar results.
+An interesting result from this exploration, however, was that higher values of alpha seemed to yield better results
+solely in the case of precision (although this increase in precision was smaller in comparison to the
+decrease in other metrics had we used this higher value of `alpha`).
+What's also interesting to note is that there are many "plateaus" in the hyperparameter scores,
+meaning that certain value ranges of `alpha` yielded the same score.
+This result is hypothesized to be due to the small size of our dataset.
+
+Finally, it's important to note that while hyperparameter tuning is powerful for optimizing a model,
+other overarching changes to the model might bring even greater improvements to the model's performance.
+In fact, while the more general cross-validation testing scheme of our `GridSearchCV` method yielded results
+that showed changes in the mean scores across various folds,
+other less-robust metrics (like using one specific train-test split) often yielded
+no change in performance from the default `alpha` value.
+Fortunately, another overarching change (feature selection) improved our model's performance significantly,
+which will be discussed later.
+
+
 ## **Discussion**
 Predicting risk based on demographic information, medical background, and behavior can provide extremely valuable insight
 into how the COVID-19 pandemic should best be handled. At the institutional level, hospitals can use our risk predictions
@@ -184,7 +224,6 @@ Moreover, risk prediction and a strong understanding of what factors contribute 
 An individual may engage in more extensive prevention behaviors if they are able to predict the severity of their illness or the illnesses of their loved ones.
 Additionally, as a society, we can identify those individuals who are most at risk, and take extra precautions to protect them from the virus.
 We hope that this increase in information will drive progress toward ending the pandemic.
-
 ### **Challenges: Unsupervised Portion**
 One of our biggest challenges is that our dataset is very small and only has a little over 100 rows. We were unable to find larger datasets with de-identified patient data for free. Since we are interested in feature selection in order to determine which factors have the highest impact on COVID-19 outcomes, projecting our feature set onto a new basis using PCA may be unviable, so we needed to find alternative methods for dimensionality reduction that allow us to select the most important original features.
 
