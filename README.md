@@ -178,7 +178,16 @@ Using a significance level of p = 0.05, we determined that there are 9 features 
 
 #### Bernoulli Naive Bayes
 After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the accuracy of the model when making the test_size parameter equal to 0.2 and making the random_state parameter equal to 13 for the test_train_split() method. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.833.     
-We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 10%, from 0.833 without pruning to 0.947, using the chi-square pruning technique.
+We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 10%, from 0.833 without pruning to 0.947, using the chi-square pruning technique.   
+
+#### Complement Naive Bayes
+After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2 and a random_state value of 20 for test_train_split(). We were able to achieve an f-measure of 0.769 after tuning the hyperparameter.  
+
+#### Multinomial Naive Bayes
+We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.643 using this method. However, this is not entirely surprising as our data is imbalanced, making this classifier technique less effective compared to Complement Naive Bayes, which is better suited for imbalanced datasets. 
+
+
+
 
 
 
