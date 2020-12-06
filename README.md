@@ -64,16 +64,20 @@ The main methods being considered are chi-squared feature selection, decision tr
 #### [Chi-Squared Feature Selection](https://towardsdatascience.com/chi-square-test-for-feature-selection-in-machine-learning-206b1f0b8223)
 After conducting unsupervised analysis on the numerical data, we wanted to perform analysis on the qualitative data and determined that the chi-squared test for feature selection would be helpful in figuring out which variables are dependent with whether or not a patient lives or dies. We ran sklearn.feature_selection.chi2 on the data with the “died” feature as the target parameter and plotted the results with the highest chi-squared statistics.
 
-#### [Decision Trees](https://en.wikipedia.org/wiki/Decision_tree)
+#### [Naive Bayes Classification and Posterior Probability Prediction](https://scikit-learn.org/stable/modules/naive_bayes.html)
 <p align="center">
   <img src="https://miro.medium.com/max/1000/0*YlmscpNST8MY7yzw.png" width = 50%/>
 </p>
-A decision tree is a tree-like structure which models the effects of
-certain actions that lead to certain possibilities.
-The goal of a decision tree is to split the classification of a certain input into groups
-through a process of sequential questions or conditions.
-In our case, these conditions might regard which underlying conditions individuals have.
-These conditions could sort examples into different groups.
+Since our ultimate goal is to predict a COVID-19 patient's prognosis, we decided to use a number of variations of Naive Bayes classifiers to predict whether a patient will either die or end up in the ICU. Naive Bayes classifiers use the "naive Bayesian assumption" that all features are conditionally independent given the datapoint's classification; that is to say, all symptoms, preexisting conditions, comorbidities, and demographics are conditionally independent given that we know whether the patient either died or is in the ICU. Using this assumption, we can predict posterior probabilities of belonging to either class label, and use these to classify a testing set. Naive Bayes classifiers are typically used for text classification, but the size of our dataset and types of our features led us to believe that they would be a viable option.
+
+##### Multinomial Naive Bayes
+Multinomial Naive Bayes classifiers are the most commonly used version of naive Bayes classifiers, and they assume that the data is multinomially-distributed. [scikit-learn's implementation](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html) of the multinomial classifier is intended for use with a "bag of words" representation of text-based data, in which each column represents a word and a datapoint's value in that column represents the number of times that word appears. We chose to test this implementation on the continuous numerical features in our dataset. 
+
+##### Complement Naive Bayes
+Complement Naive Bayes classifiers are a modification on multinomial classifiers that are specifically designed to deal with *class imbalance*; if the probability of a specific ground-truth categorization appearing dominates the probability of other categorizations, then the training set is *imbalanced*. Multinomial naive Bayes classifiers tend to perform very poorly when trained with imbalanced data because they overrepresent the probability of the more common class appearing in testing data. Since our training data had minor class imbalance, we chose to try using complement naive Bayes as well on our numerical data.
+
+##### Bernoulli Naive Bayes
+Bernoulli Naive Bayes classifiers assume that the data is distributed according to multivariate Bernoulli distributions -- this means that each feature is a boolean-valued feature, where the feature is either present or absent. These classifiers are typically used for text-based classification where each column represents a word, and each datapoint's value in that column is either 0 (indicating the word is absent from the document) or 1 (indicating the word is present). We used this classifier on all of our one-hot encoded, categorical features in our data.
 
 #### [Regression](https://en.wikipedia.org/wiki/Regression_analysis)
 <p align="center">
