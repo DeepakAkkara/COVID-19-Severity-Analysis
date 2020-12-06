@@ -199,8 +199,8 @@ Since the classes of the dataset were relatively balanced, accuracy might be a m
 <a id="naive-bayes-classifiers" class="anchor" href="#naive-bayes-classifiers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Naive Bayes Classifiers</h3>
 <h4>
 <a id="bernoulli-naive-bayes-1" class="anchor" href="#bernoulli-naive-bayes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bernoulli Naive Bayes</h4>
-<p>After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2 and making the random_state parameter equal to 13 for the test_train_split() method. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.833.<br>
-We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 10%, from 0.833 to 0.947, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.</p>
+<p>After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.78.<br>
+We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 15%, from 0.78 to 0.95, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.</p>
 <p align="center">
     <img src="assets/bernoulli_nb_best_results.png" width="50%/">
     <br>
@@ -208,10 +208,15 @@ We also tried Bernoulli Naive Bayes using just the features that the chi-square 
 </p>
 <h4>
 <a id="complement-naive-bayes-1" class="anchor" href="#complement-naive-bayes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Complement Naive Bayes</h4>
-<p>After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2 and a random_state value of 20 for test_train_split(). We were able to achieve an f-measure of 0.800 after tuning the hyperparameters.</p>
+<p>The Complement Naive Bayes method was designed to minimize the effects of class imbalance by comparing the probabilities
+of <em>not</em> belonging to certain classes rather than comparing probabilities of belonging to one certain class.
+After utilizing the Complement Naive Bayes classifier technique for the numerical data, we were able to maximize the accuracy of the model using a test_size value of 0.2. We were able to achieve an f-measure of 0.800 after tuning the hyperparameters.<br>
+The Complement Naive Bayes was not chosen as our final classifier since our data was already relatively balanced.</p>
 <h4>
 <a id="multinomial-naive-bayes-1" class="anchor" href="#multinomial-naive-bayes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multinomial Naive Bayes</h4>
-<p>We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method. However, this is not entirely surprising as our data is slightly imbalanced, making this classifier technique less effective compared to Complement Naive Bayes, which is better suited for imbalanced datasets.</p>
+<p>We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method.
+Because Multinomial Naive Bayes was designed to work with large counts of data (such as word occurrences in text),
+this method was not as suitable for the one-hot encoded data present in our dataset.</p>
 <h4>
 <a id="hyperparameter-tuning" class="anchor" href="#hyperparameter-tuning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hyperparameter Tuning</h4>
 <p>In any machine learning model, there are parameters of the model that programmers can use in order to
