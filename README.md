@@ -184,6 +184,13 @@ We also tried Bernoulli Naive Bayes using just the features that the chi-square 
     <br>
     Results from best Bernoulli Naive Bayes model
 </p>
+By using Bernoulli Naive Bayes, we were able to focus on the categorical data (which was treated as Bernoulli distribution).
+Because of the nature of categorical data (especially one-hot encoded data), the resultant classifier is able
+to accept data that doesn't rely on the precision required from numerical data.
+Also, because of feature selection, we were able to reduce the amount of needed attributes such that
+less data had to be collected in order to yield a meaningful result.
+By using the `predict_proba()` method, the classifier can extract a posterior probability, which
+can be used to decide on the severity of certain patients.
 
 #### Complement Naive Bayes
 The Complement Naive Bayes method was designed to minimize the effects of class imbalance by comparing the probabilities
