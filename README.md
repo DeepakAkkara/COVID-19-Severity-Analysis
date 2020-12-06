@@ -65,9 +65,7 @@ The main methods being considered are chi-squared feature selection, decision tr
 After conducting unsupervised analysis on the numerical data, we wanted to perform analysis on the qualitative data and determined that the chi-squared test for feature selection would be helpful in figuring out which variables are dependent with whether or not a patient lives or dies. We ran sklearn.feature_selection.chi2 on the data with the “died” feature as the target parameter and plotted the results with the highest chi-squared statistics.
 
 #### [Naive Bayes Classification and Posterior Probability Prediction](https://scikit-learn.org/stable/modules/naive_bayes.html)
-<p align="center">
-  <img src="https://miro.medium.com/max/1000/0*YlmscpNST8MY7yzw.png" width = 50%/>
-</p>
+
 Since our ultimate goal is to predict a COVID-19 patient's prognosis, we decided to use a number of variations of Naive Bayes classifiers to predict whether a patient will either die or end up in the ICU. Naive Bayes classifiers use the "naive Bayesian assumption" that all features are conditionally independent given the datapoint's classification; that is to say, all symptoms, preexisting conditions, comorbidities, and demographics are conditionally independent given that we know whether the patient either died or is in the ICU. Using this assumption, we can predict posterior probabilities of belonging to either class label, and use these to classify a testing set. Naive Bayes classifiers are typically used for text classification, but the size of our dataset and types of our features led us to believe that they would be a viable option.
 
 ##### Multinomial Naive Bayes
