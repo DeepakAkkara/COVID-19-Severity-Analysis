@@ -198,15 +198,6 @@ Since the classes of the dataset were relatively balanced, accuracy might be a m
 <h3>
 <a id="naive-bayes-classifiers" class="anchor" href="#naive-bayes-classifiers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Naive Bayes Classifiers</h3>
 <h4>
-<a id="bernoulli-naive-bayes-1" class="anchor" href="#bernoulli-naive-bayes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bernoulli Naive Bayes</h4>
-<p>After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.78.<br>
-We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 15%, from 0.78 to 0.95, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.</p>
-<p align="center">
-    <img src="assets/bernoulli_nb_best_results.png" width="50%/">
-    <br>
-    Results from best Bernoulli Naive Bayes model
-</p>
-<h4>
 <a id="complement-naive-bayes-1" class="anchor" href="#complement-naive-bayes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Complement Naive Bayes</h4>
 <p>The Complement Naive Bayes method was designed to minimize the effects of class imbalance by comparing the probabilities
 of <em>not</em> belonging to certain classes rather than comparing probabilities of belonging to one certain class.
@@ -217,6 +208,22 @@ The Complement Naive Bayes was not chosen as our final classifier since our data
 <p>We also tried utilizing the Multinomial Naive Bayes classifier for the numerical data. Unfortunately, we did not have as much success in creating an effective model using this classifier technique. We were only able to reach an f-measure of 0.737 using this method.
 Because Multinomial Naive Bayes was designed to work with large counts of data (such as word occurrences in text),
 this method was not as suitable for the one-hot encoded data present in our dataset.</p>
+<h4>
+<a id="bernoulli-naive-bayes-1" class="anchor" href="#bernoulli-naive-bayes-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bernoulli Naive Bayes</h4>
+<p>After utilizing the Bernoulli Naive Bayes classifier technique for the categorical data, we were able to maximize the effectiveness of the model when making the test_size parameter equal to 0.2. After tuning the hyperparameters, we were able to produce a classifier model using categorical features that had an f-measure of 0.78.<br>
+We also tried Bernoulli Naive Bayes using just the features that the chi-square feature selection method found to be significant (having a p-value less than 0.05). We were able to increase the f-measure by over 15%, from 0.78 to 0.95, using the chi-square pruning technique. This was the highest f-measure produced of all the Naive Bayes techniques.</p>
+<p align="center">
+    <img src="assets/bernoulli_nb_best_results.png" width="50%/">
+    <br>
+    Results from best Bernoulli Naive Bayes model
+</p>
+By using Bernoulli Naive Bayes, we were able to focus on the categorical data (which was treated as Bernoulli distribution).
+Because of the nature of categorical data (especially one-hot encoded data), the resultant classifier is able
+to accept data that doesn't rely on the precision required from numerical data.
+Also, because of feature selection, we were able to reduce the amount of needed attributes such that
+less data had to be collected in order to yield a meaningful result.
+By using the `predict_proba()` method, the classifier can extract a posterior probability, which
+can be used to decide on the severity of certain patients.
 <h4>
 <a id="hyperparameter-tuning" class="anchor" href="#hyperparameter-tuning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hyperparameter Tuning</h4>
 <p>In any machine learning model, there are parameters of the model that programmers can use in order to
@@ -275,9 +282,9 @@ We hope that this increase in information will drive progress toward ending the 
 <a id="references" class="anchor" href="#references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>References</strong>
 </h2>
 <ul>
-<li>A. I. F. AI, “COVID-19 Open Research Dataset Challenge (CORD-19),” Kaggle, 28-Sep-2020. [Online]. Available: <a href="https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/tasks?taskId=558">https://www.kaggle.com/allen-institute-for-ai/CORD-19-research-challenge/tasks?taskId=558</a>. [Accessed: 02-Oct-2020].</li>
 <li>“CDC COVID Data Tracker,” Centers for Disease Control and Prevention, 2020. [Online]. Available: <a href="https://covid.cdc.gov/covid-data-tracker/?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-updates%2Fcases-in-us.html">https://covid.cdc.gov/covid-data-tracker/?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fcoronavirus%2F2019-ncov%2Fcases-updates%2Fcases-in-us.html</a>. [Accessed: 02-Oct-2020].</li>
 <li>J. Turcotte, “Replication Data for: Risk Factors for Severe Illness in Hospitalized Covid-19 Patients at a Regional Hospital,” Harvard Dataverse, 22-Jul-2020. [Online]. Available: <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi%3A10.7910%2FDVN%2FN2WZNK">https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi%3A10.7910%2FDVN%2FN2WZNK</a>. [Accessed: 02-Oct-2020].</li>
+<li>“learn: machine learning in Python - scikit-learn 0.16.1 documentation,” scikit. [Online]. Available: <a href="https://scikit-learn.org/">https://scikit-learn.org/</a>. [Accessed: 07-Dec-2020].</li>
 </ul>
 
       <footer class="site-footer">
